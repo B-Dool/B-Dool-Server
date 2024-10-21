@@ -1,5 +1,4 @@
-package com.bdool.bdool.config;
-
+package com.bdool.searchservice.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -20,7 +19,7 @@ public class SwaggerConfig {
     private Info apiInfo() {
         return new Info()
                 .title("Swagger")
-                .description("워크스페이스,캘린더,검색 ")
+                .description("")
                 .version("1.0.0");
     }
 }

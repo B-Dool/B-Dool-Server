@@ -1,18 +1,19 @@
-package com.bdool.bdool.elastic.service;
+package com.bdool.searchservice.service;
 
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.*;
 import co.elastic.clients.json.JsonData;
-import com.bdool.bdool.elastic.index.FileIndex;
-import com.bdool.bdool.elastic.index.MessageIndex;
-import com.bdool.bdool.elastic.index.ParticipantIndex;
-import com.bdool.bdool.elastic.index.ProfileIndex;
+
+import com.bdool.searchservice.index.FileIndex;
+import com.bdool.searchservice.index.MessageIndex;
+import com.bdool.searchservice.index.ParticipantIndex;
+import com.bdool.searchservice.index.ProfileIndex;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
-import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,13 +99,13 @@ public class SearchService {
                 .withQuery(boolQueryBuilder.build()._toQuery())
                 .withSort(s -> s
                         .field(f -> f
-                                .field("channel_id.keyword")
+                                .field("channel_id")
                                 .order(SortOrder.Asc)
                         )
                 )
                 .withSort(s -> s
                         .field(f -> f
-                                .field("created_at")
+                                .field("send_date")
                                 .order(SortOrder.Desc)
                         )
                 )
@@ -116,13 +117,13 @@ public class SearchService {
                 .collect(Collectors.toList());
     }
 
-    public List<FileIndex> searchFiles(String keyword, Long profileId, String extension){
+    public List<FileIndex> searchFiles(String keyword, Long profileId, String fileType){
         BoolQuery.Builder boolQueryBuilder = new BoolQuery.Builder();
 
         List<String> messageIds = getMessagesIdByProfileId(profileId);
         for(String messageId : messageIds){
             TermQuery termQuery = new TermQuery.Builder()
-                    .field("message_img_id")
+                    .field("entity_id")
                     .value(messageId)
                     .build();
             boolQueryBuilder.should(termQuery._toQuery());
@@ -134,21 +135,12 @@ public class SearchService {
                 .query(keyword)
                 .operator(Operator.And)
                 .build();
+        boolQueryBuilder.must(matchQuery._toQuery());
 
-        TermQuery termQuery = new TermQuery.Builder()
-                .field("extension")
-                .value(keyword)
-                .build();
-
-        boolQueryBuilder
-                .must(matchQuery._toQuery());
-                /*.should(termQuery._toQuery())
-                .minimumShouldMatch("1");*/
-
-        if(extension != null){
+        if(fileType != null){
             TermQuery termQuery2 = new TermQuery.Builder()
-                    .field("extension")
-                    .value(extension)
+                    .field("file_type")
+                    .value(fileType)
                     .build();
             boolQueryBuilder.filter(termQuery2._toQuery());
         }
@@ -157,10 +149,11 @@ public class SearchService {
                 .withQuery(boolQueryBuilder.build()._toQuery())
                 .withSort(s -> s
                         .field(f -> f
-                                .field("extension")
+                                .field("uploaded_at")
                                 .order(SortOrder.Desc)
                         )
                 )
+
                 .build();
 
 

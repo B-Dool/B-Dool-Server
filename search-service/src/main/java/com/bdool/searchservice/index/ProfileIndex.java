@@ -1,4 +1,4 @@
-package com.bdool.bdool.elastic.index;
+package com.bdool.searchservice.index;
 
 import lombok.Getter;
 import lombok.Setter;

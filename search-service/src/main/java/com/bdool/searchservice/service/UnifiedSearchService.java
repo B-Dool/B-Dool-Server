@@ -1,9 +1,8 @@
-package com.bdool.bdool.elastic.service;
-
-import com.bdool.bdool.elastic.index.FileIndex;
-import com.bdool.bdool.elastic.index.MessageIndex;
-import com.bdool.bdool.elastic.index.ProfileIndex;
-import com.bdool.bdool.elastic.index.UnifiedSearchResponse;
+package com.bdool.searchservice.service;
+import com.bdool.searchservice.index.FileIndex;
+import com.bdool.searchservice.index.MessageIndex;
+import com.bdool.searchservice.index.ProfileIndex;
+import com.bdool.searchservice.index.UnifiedSearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
-package com.bdool.bdool.elastic.index;
+package com.bdool.searchservice.index;
 
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -17,20 +16,11 @@ public class ParticipantIndex {
     @Field(name = "channel_id", type = FieldType.Keyword)
     private String channelId;
 
-    @Field(type = FieldType.Keyword)
-    private String nickname;
-
-    @Field(type = FieldType.Long)
-    private Long favorited;
-
-    @Field(type = FieldType.Long)
-    private Long isOnline;
-
-    @Field(name = "joined_at", type = FieldType.Keyword)
-    private String joinedAt;
-
     @Field(name = "profile_id", type = FieldType.Long)
     private Long profileId;
+
+
+
 
 
 }

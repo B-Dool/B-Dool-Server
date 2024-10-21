@@ -1,6 +1,5 @@
-package com.bdool.bdool.elastic.index;
+package com.bdool.searchservice.index;
 
-import org.springframework.data.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -21,11 +20,8 @@ public class MessageIndex {
     @Field(type = FieldType.Text)
     private String content;
 
-    @Field(name = "created_at", type = FieldType.Date)
-    private String createdAt;
-
-    @Field(name = "file_URL", type = FieldType.Keyword)
-    private String fileURL;
+    @Field(name = "send_date", type = FieldType.Date)
+    private String sendDate;
 
     @Field(name = "is_deleted", type = FieldType.Long)
     private Long isDeleted;
@@ -33,7 +29,13 @@ public class MessageIndex {
     @Field(name = "is_edited", type = FieldType.Long)
     private Long isEdited;
 
+    @Field(name = "parent_message_id", type = FieldType.Keyword)
+    private  String parentMessageId;
+
     @Field(name = "profile_id", type = FieldType.Long)
     private Long profileId;
+
+    @Field(name = "file_URL", type = FieldType.Keyword)
+    private String fileURL;
 
 }

@@ -1,11 +1,12 @@
-package com.bdool.bdool.elastic.controller;
+package com.bdool.searchservice.controller;
 
-import com.bdool.bdool.elastic.index.FileIndex;
-import com.bdool.bdool.elastic.index.MessageIndex;
-import com.bdool.bdool.elastic.index.ProfileIndex;
-import com.bdool.bdool.elastic.index.UnifiedSearchResponse;
-import com.bdool.bdool.elastic.service.SearchService;
-import com.bdool.bdool.elastic.service.UnifiedSearchService;
+
+import com.bdool.searchservice.index.FileIndex;
+import com.bdool.searchservice.index.MessageIndex;
+import com.bdool.searchservice.index.ProfileIndex;
+import com.bdool.searchservice.index.UnifiedSearchResponse;
+import com.bdool.searchservice.service.SearchService;
+import com.bdool.searchservice.service.UnifiedSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +36,8 @@ public class SearchController {
     @GetMapping("/file")
     public List<FileIndex> searchMessages(@RequestParam String keyword,
                                           @RequestParam Long profileId,
-                                          @RequestParam(required = false) String extension){
-        return searchService.searchFiles(keyword, profileId,extension);
+                                          @RequestParam(required = false) String fileType){
+        return searchService.searchFiles(keyword, profileId,fileType);
     }
 
     @GetMapping("/unified/{workspaceId}")
@@ -45,9 +46,9 @@ public class SearchController {
                                                @RequestParam Long profileId,
                                                @RequestParam(required = false) String startDate,
                                                @RequestParam(required = false) String endDate,
-                                               @RequestParam(required = false) String extension){
+                                               @RequestParam(required = false) String fileType){
 
-        return unifiedSearchService.unifiedSearch(workspaceId,keyword, profileId, startDate, endDate, extension);
+        return unifiedSearchService.unifiedSearch(workspaceId,keyword, profileId, startDate, endDate, fileType);
     }
 
 
