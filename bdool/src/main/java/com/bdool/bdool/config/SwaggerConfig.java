@@ -20,7 +20,7 @@ public class SwaggerConfig {
     private Info apiInfo() {
         return new Info()
                 .title("Swagger")
-                .description("워크스페이스,캘린더,검색 ")
+                .description("워크스페이스 , 캘린더,서치 ")
                 .version("1.0.0");
     }
 }
