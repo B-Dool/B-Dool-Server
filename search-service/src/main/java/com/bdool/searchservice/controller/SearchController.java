@@ -54,8 +54,14 @@ public class SearchController {
 
     @GetMapping("/messages/{profileId}")
     public ResponseEntity<List<String>> getMessagesByProfileId(@PathVariable Long profileId) {
-        List<String> messageIds = searchService.getMessagesIdByProfileId(profileId);
+        List<String> messageIds = searchService.getFileUrlByProfileId(profileId);
         return ResponseEntity.ok(messageIds);
+    }
+
+    @GetMapping("/channel/{profileId}")
+    public ResponseEntity<List<String>> getChannelIdsByProfileId (@PathVariable Long profileId) {
+        List<String> ids = searchService.getChannelIdsByProfileId(profileId);
+        return ResponseEntity.ok(ids);
     }
 
 

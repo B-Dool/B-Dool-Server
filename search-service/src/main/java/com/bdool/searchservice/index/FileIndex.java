@@ -30,9 +30,6 @@ public class FileIndex {
     @Field(name = "uploaded_at")
     private String uploadedAt;
 
-    @Field(name = "entity_id")
-    private Long entityId;
-
     @Field(name = "file_type")
     private String fileType;
 }

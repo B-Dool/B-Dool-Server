@@ -51,7 +51,7 @@ public class SearchService {
                 .withQuery(boolQuery._toQuery())
                 .withSort(s -> s
                         .field(f -> f
-                                .field("name.keyword")
+                                .field("name")
                                 .order(SortOrder.Asc)
                         )
                 )
@@ -120,11 +120,11 @@ public class SearchService {
     public List<FileIndex> searchFiles(String keyword, Long profileId, String fileType){
         BoolQuery.Builder boolQueryBuilder = new BoolQuery.Builder();
 
-        List<String> messageIds = getMessagesIdByProfileId(profileId);
-        for(String messageId : messageIds){
+        List<String> fileUrls = getFileUrlByProfileId(profileId);
+        for(String fileUrl : fileUrls){
             TermQuery termQuery = new TermQuery.Builder()
-                    .field("entity_id")
-                    .value(messageId)
+                    .field("path")
+                    .value(fileUrl)
                     .build();
             boolQueryBuilder.should(termQuery._toQuery());
         }
@@ -179,7 +179,7 @@ public class SearchService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getMessagesIdByProfileId(Long profileId) {
+    public List<String> getFileUrlByProfileId(Long profileId) {
         BoolQuery.Builder boolQueryBuilder = new BoolQuery.Builder();
 
         List<String> channelIds = getChannelIdsByProfileId(profileId);
@@ -199,7 +199,7 @@ public class SearchService {
         SearchHits<MessageIndex> searchHits =elasticsearchOperations.search(query, MessageIndex.class);
 
         return searchHits.getSearchHits().stream()
-                .map(hit -> hit.getContent().getMessageId())
+                .map(hit -> hit.getContent().getFileURL())
                 .collect(Collectors.toList());
     }
 }
