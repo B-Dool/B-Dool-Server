@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-service
+  labels:
+    app: search-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-service
+  template:
+    metadata:
+      name: search-service
+      labels:
+        app: search-service
+    spec:
+      containers:
+        - name: search-service
+          image: kang1521/search:latest
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      
