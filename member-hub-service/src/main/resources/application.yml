@@ -2,7 +2,7 @@ spring:
   application:
     name: member
   profiles:
-    active: defalut
+    active: default
   config:
     import: optional:configserver:http://211.188.50.29:8888
 management:
