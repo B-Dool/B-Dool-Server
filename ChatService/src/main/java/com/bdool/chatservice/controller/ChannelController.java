@@ -1,16 +1,14 @@
 package com.bdool.chatservice.controller;
 
 import com.bdool.chatservice.model.domain.ChannelModel;
-import com.bdool.chatservice.model.domain.ParticipantModel;
 import com.bdool.chatservice.model.entity.ChannelEntity;
-import com.bdool.chatservice.model.entity.ParticipantEntity;
 import com.bdool.chatservice.service.ChannelService;
-import com.bdool.chatservice.service.ParticipantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -56,8 +54,8 @@ public class ChannelController {
 
     @GetMapping("/workspaces/{workspaceId}/default-channel")
     public ResponseEntity<?> findAllByDefaultChannel(@PathVariable Long workspaceId) {
-        ChannelEntity channels = channelService.findDefaultChannelsByWorkspacesId(workspaceId);
-        if (channels == null) {
+        Optional<ChannelEntity> channels = channelService.findDefaultChannelsByWorkspacesId(workspaceId);
+        if (channels.isEmpty()) {
             return ResponseEntity.noContent().build();  // 204 No Content
         }
         return ResponseEntity.ok(channels);  // 200 OK
