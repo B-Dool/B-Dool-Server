@@ -22,7 +22,7 @@ public interface ParticipantService {
 
     boolean existsById(UUID participantId);
 
-    boolean isParticipantInChannel(UUID channelId, Long profileId);
+    Optional<ParticipantEntity> isParticipantInChannel(UUID channelId, Long profileId);
 
     long count();
 

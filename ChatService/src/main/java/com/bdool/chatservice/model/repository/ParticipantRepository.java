@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -15,5 +16,5 @@ public interface ParticipantRepository extends MongoRepository<ParticipantEntity
     List<ParticipantEntity> findByChannelId(UUID channelId);
     List<ParticipantEntity> findByProfileId(Long profileId);
 
-    boolean existsByChannelIdAndProfileId(UUID channelId, Long profileId);
+    Optional<ParticipantEntity> findByChannelIdAndProfileId(UUID channelId, Long profileId);
 }

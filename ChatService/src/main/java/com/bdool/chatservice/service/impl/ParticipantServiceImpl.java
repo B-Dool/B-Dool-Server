@@ -111,9 +111,9 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
-    public boolean isParticipantInChannel(UUID channelId, Long profileId) {
+    public Optional<ParticipantEntity> isParticipantInChannel(UUID channelId, Long profileId) {
         // profileId와 channelId로 참석자가 있는지 확인합니다.
-        return participantRepository.existsByChannelIdAndProfileId(channelId, profileId);
+        return participantRepository.findByChannelIdAndProfileId(channelId, profileId);
     }
 
     @Override
