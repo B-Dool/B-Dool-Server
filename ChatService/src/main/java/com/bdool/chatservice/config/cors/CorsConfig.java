@@ -13,6 +13,8 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:3000");
         config.addAllowedOrigin("https://www.bdool.online");
+        config.addAllowedOrigin("https://bdool.online");
+        config.addAllowedOrigin("https://b-dool-front.vercel.app");
         config.setAllowCredentials(true);
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");

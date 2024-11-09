@@ -14,6 +14,9 @@ public class webConfig {
                 public void addCorsMappings(CorsRegistry registry) {
                     registry.addMapping("/**")
                             .allowedOrigins("http://localhost:3000")
+                            .allowedOrigins("https://www.bdool.online")
+                            .allowedOrigins("https://bdool.online")
+                            .allowedOrigins("https://b-dool-front.vercel.app")
                             .allowedMethods("GET")
                             .allowedHeaders("*")
                             .allowCredentials(true);
