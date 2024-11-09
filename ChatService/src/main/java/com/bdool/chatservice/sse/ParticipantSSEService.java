@@ -19,7 +19,7 @@ public class ParticipantSSEService {
 
 
     public SseEmitter createSseEmitter() {
-        SseEmitter emitter = new SseEmitter(0L);  // 타임아웃을 무한대로 설정
+        SseEmitter emitter = new SseEmitter(30000L); // 타임아웃을 30초로 설정
         Long emitterId = System.currentTimeMillis();
         emitters.put(emitterId, emitter);
 
