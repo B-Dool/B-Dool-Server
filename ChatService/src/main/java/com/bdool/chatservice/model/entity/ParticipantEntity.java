@@ -29,7 +29,7 @@ public class ParticipantEntity {
 
     private Long profileId;
 
-    private String profileURL;
+    private String profileUrl;
 
     public void updateOnline(Boolean isOnline) {
         this.isOnline = isOnline;
@@ -39,7 +39,7 @@ public class ParticipantEntity {
         this.nickname = nickname;
     }
 
-    public void updateProfileURL(String profileURL) {
-        this.profileURL = profileURL;
+    public void updateProfileURL(String profileUrl) {
+        this.profileUrl = this.profileUrl;
     }
 }

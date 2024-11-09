@@ -27,7 +27,7 @@ public class ChannelModel {
 
     private Long profileId; // 생성자의 프로필 ID, 필수 필드
 
-    private String profileURl; // 생성자의 프로필 URL, 필수 필드
+    private String profileUrl; // 생성자의 프로필 URL, 필수 필드 (필드명 수정)
 
     private String nickname; // 생성자의 닉네임
 

@@ -21,5 +21,5 @@ public class ParticipantModel {
 
     private Long profileId;
 
-    private String profileURL;
+    private String profileUrl;
 }

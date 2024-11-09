@@ -83,7 +83,7 @@ public class ChannelServiceImpl implements ChannelService {
                         .joinedAt(LocalDateTime.now())
                         .nickname(channelModel.getNickname())
                         .profileId(channelModel.getProfileId())
-                        .profileURL(channelModel.getProfileURl())
+                        .profileUrl(channelModel.getProfileUrl())
                         .build()
         );
 

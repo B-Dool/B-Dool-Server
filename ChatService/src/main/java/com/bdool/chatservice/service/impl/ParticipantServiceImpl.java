@@ -53,7 +53,7 @@ public class ParticipantServiceImpl implements ParticipantService {
                                 .joinedAt(LocalDateTime.now())
                                 .nickname(participant.getNickname())
                                 .profileId(participant.getProfileId())
-                                .profileURL(participant.getProfileURL())
+                                .profileUrl(participant.getProfileUrl())
                                 .build()
         );
         sendJoinNotificationToChannelParticipants(participant.getChannelId(), participant);
@@ -82,7 +82,7 @@ public class ParticipantServiceImpl implements ParticipantService {
         return participantRepository.findById(participantId).map(existingMember -> {
             existingMember.setChannelId(participant.getChannelId());
             existingMember.setNickname(participant.getNickname());
-            existingMember.setProfileURL(participant.getProfileURL());
+            existingMember.setProfileUrl(participant.getProfileUrl());
             existingMember.setParticipantId(participant.getParticipantId());
 
             return participantRepository.save(existingMember);
@@ -164,7 +164,7 @@ public class ParticipantServiceImpl implements ParticipantService {
             participantRepository.save(participant);
 
             ParticipantPorfileUrlResponse participantPorfileUrlResponse = new ParticipantPorfileUrlResponse(
-                    profileId, participant.getChannelId(), participant.getProfileURL()
+                    profileId, participant.getChannelId(), participant.getProfileUrl()
             );
             sseService.notifyProfileUrlChange(participantPorfileUrlResponse);
         }
