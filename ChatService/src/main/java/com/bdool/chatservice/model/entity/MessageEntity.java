@@ -3,7 +3,6 @@ package com.bdool.chatservice.model.entity;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,32 +15,16 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Document(collection = "messages")
 public class MessageEntity {
+
     @Id
-    private String id; // MongoDB 기본 `_id` 필드
+    private UUID messageId; // UUID 자동 생성
 
-    @Field(name = "message_id")
-    private UUID messageId;
-
-    @Field(name = "channel_id")
-    private UUID channelId;
-
-    private String content;
-
-    @Field(name = "send_date")
-    private LocalDateTime sendDate;
-
-    @Field(name = "is_deleted")
-    private Boolean isDeleted;
-
-    @Field(name = "is_edited")
-    private Boolean isEdited;
-
-    @Field(name = "parent_message_id")
-    private UUID parentMessageId;
-
-    @Field(name = "profile_id")
-    private Long profileId;
-
-    @Field(name = "file_URL")
-    private String fileUrl;
+    private UUID channelId; // 받아야 하는 필드
+    private String content; // 받아야 하는 필드
+    private LocalDateTime sendDate; // LocalDateTime.now()로 처리
+    private Boolean isEdited; // 처음 생성할 시 false로 들어감
+    private Boolean isDeleted; // 처음 생성할 시 false로 들어감
+    private UUID parentMessageId; // 값이 없으면 null 있으면 부모의 메시지 ID를 받아야 함
+    private Long profileId; // 받아야 하는 필드
+    private String fileUrl; // 파일이 첨부된 경우 받아야 함
 }

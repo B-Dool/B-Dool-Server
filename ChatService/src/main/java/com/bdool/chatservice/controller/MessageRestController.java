@@ -5,7 +5,6 @@ import com.bdool.chatservice.model.entity.MessageEntity;
 import com.bdool.chatservice.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class MessageRestController {
 
     private final MessageService messageService;
-    private final SimpMessagingTemplate messagingTemplate;
 
     // 특정 채널의 메시지 조회
     @GetMapping("/{channelId}")

@@ -3,7 +3,6 @@ package com.bdool.chatservice.model.entity;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,13 +17,9 @@ import java.util.UUID;
 public class ParticipantEntity {
 
     @Id
-    private String id; // MongoDB 기본 `_id` 필드
+    private UUID participantId; //UUID 자동 생성
 
-    @Field(name = "participant_id")
-    private UUID participantId;
-
-    @Field(name = "channel_id")
-    private UUID channelId;
+    private UUID channelId; // 받아야 하는 필드
 
     private String nickname;
 
@@ -32,7 +27,6 @@ public class ParticipantEntity {
 
     private Boolean isOnline;
 
-    @Field(name = "profile_id")
     private Long profileId;
 
     private String profileUrl;

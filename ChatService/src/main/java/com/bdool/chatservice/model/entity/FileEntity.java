@@ -6,7 +6,6 @@ import com.bdool.chatservice.model.Enum.FileType;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,14 +20,10 @@ import java.util.UUID;
 public class FileEntity {
 
     @Id
-    private String id; // MongoDB 기본 `_id` 필드
-
-    @Field(name ="file_id" )
     private UUID fileId; // 파일 고유 ID (UUID)
 
     private String fname; // 저장될 파일명 (UUID가 추가된 파일명)
 
-    @Field(name = "original_file_name")
     private String originalFileName; // 업로드된 파일의 원본 파일명
 
     private String path; // 파일 경로 (S3 URL 등)
@@ -37,12 +32,10 @@ public class FileEntity {
 
     private String extension; // 파일 확장자 (예: jpg, pdf)
 
-    @Field(name = "uploaded_at")
     private LocalDateTime uploadedAt; // 파일 업로드 시간
 
     private EntityType entityType; // 파일이 속한 엔터티의 타입 (예: PROFILE, WORKSPACE, MESSAGE)
 
-    @Field(name = "file_type")
     private FileType fileType; // 파일 유형 (예: IMAGE, DOCUMENT, VIDEO 등)
 
     private String md5Hash; // 파일 무결성 확인을 위한 MD5 해시 (Optional)
