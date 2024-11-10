@@ -14,7 +14,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Document(collection = "channel")
+@Document(collection = "channels")
 public class ChannelEntity {
 
     @Id

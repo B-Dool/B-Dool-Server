@@ -16,7 +16,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Document(collection = "file")
+@Document(collection = "files")
 public class FileEntity {
 
     @Id

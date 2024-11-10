@@ -13,7 +13,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Document(collection = "member")
+@Document(collection = "participants")
 public class ParticipantEntity {
 
     @Id

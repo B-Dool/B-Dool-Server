@@ -13,7 +13,7 @@ import java.util.UUID;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Document(collection = "message")
+@Document(collection = "messages")
 public class MessageEntity {
 
     @Id
