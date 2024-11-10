@@ -10,7 +10,7 @@ public class ParticipantServiceHelper {
                                                         Boolean isOnline) {
         webClient.patch()
                 .uri(uriBuilder -> uriBuilder
-                        .path(channelServiceUrl + "/participants/" + profileId + "/online")
+                        .path(channelServiceUrl + "/participant/" + profileId + "/online")
                         .queryParam("isOnline", isOnline)
                         .build())
                 .retrieve()
@@ -26,7 +26,7 @@ public class ParticipantServiceHelper {
                                                     String nickname) {
         webClient.patch()
                 .uri(uriBuilder -> uriBuilder
-                        .path(channelServiceUrl + "/participants/" + profileId + "/nickname")
+                        .path(channelServiceUrl + "/participant/" + profileId + "/nickname")
                         .queryParam("nickname", nickname)
                         .build())
                 .retrieve()
