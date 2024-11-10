@@ -16,8 +16,9 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Document(collection = "messages")
 public class MessageEntity {
-
     @Id
+    private String id; // MongoDB 기본 `_id` 필드
+
     @Field(name = "message_id")
     private UUID messageId;
 

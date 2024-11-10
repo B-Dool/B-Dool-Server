@@ -21,6 +21,8 @@ import java.util.UUID;
 public class FileEntity {
 
     @Id
+    private String id; // MongoDB 기본 `_id` 필드
+
     @Field(name ="file_id" )
     private UUID fileId; // 파일 고유 ID (UUID)
 

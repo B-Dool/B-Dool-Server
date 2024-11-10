@@ -18,6 +18,8 @@ import java.util.UUID;
 public class ParticipantEntity {
 
     @Id
+    private String id; // MongoDB 기본 `_id` 필드
+
     @Field(name = "participant_id")
     private UUID participantId;
 
