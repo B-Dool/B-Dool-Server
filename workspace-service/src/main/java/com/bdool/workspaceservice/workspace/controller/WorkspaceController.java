@@ -45,7 +45,7 @@ public class WorkspaceController {
 
     // URL 중복 체크
     @GetMapping("/check-url")
-    public ResponseEntity<Boolean> checkUrlAvailability(@RequestBody String url) {
+    public ResponseEntity<Boolean> checkUrlAvailability(@RequestParam String url) {
         boolean isAvailable = workspaceService.isUrlAvailable(url);
         return ResponseEntity.ok(isAvailable);
     }

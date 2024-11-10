@@ -79,9 +79,9 @@ public class WorkspaceServiceImpl implements WorkspaceService {
                 .id(workspace.getId())
                 .name(request.getName())
                 .description(request.getDescription())
-                .workspaceImageUrl(request.getWorkspaceImageUrl())
+                .workspaceImageUrl(request.getWorkspaceImageUrl() != null ? request.getWorkspaceImageUrl() : workspace.getWorkspaceImageUrl())
                 .ownerId(workspace.getOwnerId())
-                .url(request.getUrl())
+                .url(request.getUrl() != null ? request.getUrl() : workspace.getUrl())
                 .createdAt(workspace.getCreatedAt())
                 .build();
 
