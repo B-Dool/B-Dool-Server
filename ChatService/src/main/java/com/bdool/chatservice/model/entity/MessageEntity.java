@@ -19,28 +19,28 @@ public class MessageEntity {
 
     @Id
     @Field(name = "message_id")
-    private String messageId;
+    private UUID messageId;
 
     @Field(name = "channel_id")
-    private String channelId;
+    private UUID channelId;
 
     private String content;
 
     @Field(name = "send_date")
-    private String sendDate;
+    private LocalDateTime sendDate;
 
     @Field(name = "is_deleted")
-    private Long isDeleted;
+    private Boolean isDeleted;
 
     @Field(name = "is_edited")
-    private Long isEdited;
+    private Boolean isEdited;
 
     @Field(name = "parent_message_id")
-    private  String parentMessageId;
+    private UUID parentMessageId;
 
     @Field(name = "profile_id")
     private Long profileId;
 
     @Field(name = "file_URL")
-    private String fileURL;
+    private String fileUrl;
 }

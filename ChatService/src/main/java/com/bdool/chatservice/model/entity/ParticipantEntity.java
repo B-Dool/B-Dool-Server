@@ -19,10 +19,10 @@ public class ParticipantEntity {
 
     @Id
     @Field(name = "participant_id")
-    private String participantId;
+    private UUID participantId;
 
     @Field(name = "channel_id")
-    private String channelId;
+    private UUID channelId;
 
     private String nickname;
 
