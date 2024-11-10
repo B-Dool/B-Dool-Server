@@ -173,7 +173,9 @@ public class ChannelServiceImpl implements ChannelService {
             ChannelEntity updatedChannel = channelRepository.save(existingChannel);
 
             // 채널 이름 변경 SSE 알림
-            ChannelRenameResponse renameResponse = new ChannelRenameResponse(updatedChannel.getChannelId(), newName);
+            ChannelRenameResponse renameResponse = new ChannelRenameResponse();
+            renameResponse.setChannelId(updatedChannel.getChannelId());
+            renameResponse.setNewChannelName(newName);
             channelSSEService.notifyChannelRename(renameResponse);
 
             return updatedChannel;
