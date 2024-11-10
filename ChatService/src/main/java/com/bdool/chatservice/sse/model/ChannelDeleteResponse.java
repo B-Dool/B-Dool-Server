@@ -11,4 +11,5 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ChannelDeleteResponse {
     private UUID channelId;
+    private Long workspacesId;
 }

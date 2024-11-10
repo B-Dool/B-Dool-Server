@@ -9,5 +9,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ChannelRenameResponse {
     private UUID channelId;
+    private Long workspacesId;
     private String newChannelName;
 }

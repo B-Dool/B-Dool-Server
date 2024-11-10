@@ -11,5 +11,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ChannelAddResponse {
     private UUID channelId;
+    private Long workspacesId;
     private String channelName;
 }
