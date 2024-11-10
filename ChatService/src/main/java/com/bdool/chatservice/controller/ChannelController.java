@@ -21,7 +21,6 @@ public class ChannelController {
     // 채널 생성
     @PostMapping("")
     public ResponseEntity<?> save(@RequestBody ChannelModel channel) {
-        System.out.println(channel.getProfileUrl());
         return ResponseEntity.ok(channelService.save(channel)); // 200 OK
     }
 

@@ -8,6 +8,7 @@ import com.bdool.chatservice.model.entity.ParticipantEntity;
 import com.bdool.chatservice.model.repository.ChannelRepository;
 import com.bdool.chatservice.model.repository.ParticipantRepository;
 import com.bdool.chatservice.service.ChannelService;
+import com.bdool.chatservice.service.ParticipantService;
 import com.bdool.chatservice.sse.ChannelSSEService;
 import com.bdool.chatservice.sse.model.ChannelAddResponse;
 import com.bdool.chatservice.sse.model.ChannelDeleteResponse;
@@ -16,6 +17,8 @@ import com.bdool.chatservice.util.UUIDUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,6 +32,7 @@ public class ChannelServiceImpl implements ChannelService {
     private final ChannelRepository channelRepository;
     private final ChannelSSEService channelSSEService;
     private final ParticipantRepository participantRepository;
+    private final Logger logger = LoggerFactory.getLogger(ChannelServiceImpl.class);
 
     @Override
     @Transactional
@@ -75,17 +79,24 @@ public class ChannelServiceImpl implements ChannelService {
         channelSSEService.notifyChannelAdd(addResponse);
 
         // DM 또는 일반 채널 모두 생성자 정보를 참석자로 저장
-        participantRepository.save(
-                ParticipantEntity.builder()
-                        .participantId(UUIDUtil.getOrCreateUUID(null))
-                        .channelId(savedChannel.getChannelId())
-                        .isOnline(true)
-                        .joinedAt(LocalDateTime.now())
-                        .nickname(channelModel.getNickname())
-                        .profileId(channelModel.getProfileId())
-                        .profileUrl(channelModel.getProfileUrl())
-                        .build()
-        );
+        // 참석자 엔티티 생성
+        ParticipantEntity participant = ParticipantEntity.builder()
+                .participantId(UUID.randomUUID())
+                .channelId(savedChannel.getChannelId())
+                .isOnline(true)
+                .joinedAt(LocalDateTime.now())
+                .nickname(channelModel.getNickname())
+                .profileId(channelModel.getProfileId())
+                .profileUrl(channelModel.getProfileUrl())
+                .build();
+
+        // 참석자 데이터를 로그로 출력
+        // 참석자 데이터를 로그로 출력
+        logger.info("Profile URL: {}", channelModel.getProfileUrl());
+        logger.info("Saving participant data: {}", participant);
+
+        // 참석자 저장
+        participantRepository.save(participant);
 
         return savedChannel;
     }
