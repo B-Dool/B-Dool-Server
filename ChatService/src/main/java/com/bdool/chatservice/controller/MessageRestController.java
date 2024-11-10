@@ -46,7 +46,6 @@ public class MessageRestController {
     @DeleteMapping("/{messageId}")
     public ResponseEntity<Void> deleteById(@PathVariable UUID messageId) {
         messageService.deleteById(messageId);
-        messagingTemplate.convertAndSend("/topic/channel/" + messageService.findById(messageId).getChannelId(), messageId);
         return ResponseEntity.noContent().build();  // 삭제 후 204 응답
     }
 }
