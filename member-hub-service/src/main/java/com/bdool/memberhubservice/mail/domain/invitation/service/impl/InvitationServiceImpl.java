@@ -54,7 +54,7 @@ public class InvitationServiceImpl implements InvitationService {
         // **초대 코드 생성**
         String invitationCode = UUID.randomUUID().toString();
         // **초대 링크 생성**
-        String invitationLink = "https://bdool.site/invite?code=" + invitationCode;
+        String invitationLink = "https://bdool.online/invite?code=" + invitationCode;
         // **이메일 본문 작성**
         Profile profile = profileService.findProfileById(invitorId)
                 .orElseThrow();
