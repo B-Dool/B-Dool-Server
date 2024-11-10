@@ -20,7 +20,12 @@ public class WebClientConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins(
+                                "http://localhost:3000",
+                                "https://www.bdool.online",
+                                "https://bdool.online",
+                                "https://b-dool-front.vercel.app"
+                        )
                         .allowedMethods("*") // 모든 메소드 허용
                         .allowedHeaders("*")
                         .allowCredentials(true);
