@@ -5,6 +5,7 @@ import com.bdool.chatservice.model.entity.MessageEntity;
 import com.bdool.chatservice.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class MessageRestController {
 
     private final MessageService messageService;
+    private final SimpMessagingTemplate messagingTemplate;
 
     // 특정 채널의 메시지 조회
     @GetMapping("/{channelId}")
@@ -44,6 +46,7 @@ public class MessageRestController {
     @DeleteMapping("/{messageId}")
     public ResponseEntity<Void> deleteById(@PathVariable UUID messageId) {
         messageService.deleteById(messageId);
+        messagingTemplate.convertAndSend("/topic/channel/" + messageService.findById(messageId).getChannelId(), messageId);
         return ResponseEntity.noContent().build();  // 삭제 후 204 응답
     }
 }
