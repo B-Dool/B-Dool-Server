@@ -42,15 +42,30 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE","PATCH"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-        configuration.setExposedHeaders(List.of("Authorization"));
-        configuration.setAllowCredentials(true); // 쿠키, 인증 정보 허용
-        configuration.setMaxAge(3600L); // 캐시 시간
+
+        // 허용할 Origin 추가
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:3000",
+                "https://www.bdool.online",
+                "https://bdool.online",
+                "https://b-dool-front.vercel.app"
+        ));
+
+        // 허용할 HTTP 메소드 추가
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+
+        // 허용할 HTTP 헤더 추가
+        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type", "X-Requested-With"));
+
+        // 클라이언트가 접근할 수 있는 헤더 지정
+        configuration.setExposedHeaders(List.of("Authorization", "Content-Disposition"));
+
+        configuration.setAllowCredentials(true); // 쿠키와 인증 정보 허용
+        configuration.setMaxAge(3600L); // 캐시 시간 설정 (1시간)
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 }
