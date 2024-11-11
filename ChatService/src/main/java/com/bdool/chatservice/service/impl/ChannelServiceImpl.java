@@ -45,11 +45,6 @@ public class ChannelServiceImpl implements ChannelService {
             if (channelRepository.existsByWorkspacesIdAndDmRequestId(channelModel.getWorkspacesId(), channelModel.getDmRequestId())) {
                 throw new IllegalArgumentException("A DM channel already exists with this dmRequestId in the workspace.");
             }
-        } else if (channelModel.getChannelType() == ChannelType.DEFAULT) {
-            // DEFAULT 채널은 워크스페이스 하나당 하나만 허용
-            if (channelRepository.existsByWorkspacesIdAndChannelType(channelModel.getWorkspacesId(), ChannelType.DEFAULT)) {
-                throw new IllegalArgumentException("Each workspace can only have one DEFAULT channel.");
-            }
         } else {
             // 일반 채널일 경우 dmRequestId를 null로 설정
             channelModel.setDmRequestId(null);
